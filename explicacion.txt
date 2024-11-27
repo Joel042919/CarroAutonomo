@@ -1,0 +1,79 @@
+[NEAT]
+fitness_criterion     = max    #Calcular el criterio de terminacion a partir del conjunto de aptitudes del genoma
+fitness_threshold     = 100000   #Cuando la aptitud del genoma supera este umbral el proceso de evolución finalizará (llama al metodo found_solution)
+pop_size              = 30
+reset_on_extinction   = True
+
+[DefaultGenome]
+# Opciones de la funcion de activacion del nodo
+activation_default      = tanh
+activation_mutate_rate  = 0.01
+activation_options      = tanh
+
+# Opciones de agregacion del nodo
+aggregation_default     = sum
+aggregation_mutate_rate = 0.01
+aggregation_options     = sum
+
+# Opciones de sesgo o bias
+bias_init_mean          = 0.0
+bias_init_stdev         = 1.0
+bias_max_value          = 30.0
+bias_min_value          = -30.0
+bias_mutate_power       = 0.5
+bias_mutate_rate        = 0.7
+bias_replace_rate       = 0.1
+
+# Opciones de compatibilidad del genoma
+compatibility_disjoint_coefficient = 1.0
+compatibility_weight_coefficient   = 0.5
+
+# Probabilidad de añadir/eliminar una conexion
+conn_add_prob           = 0.5  #La probabilidad de que la mutacion agregue una conexion entre dos nodos existentes
+conn_delete_prob        = 0.5   #La probabilidad de que la mutacion elimine una conexion
+
+# Estabilidad de las conexiones
+enabled_default         = True 
+enabled_mutate_rate     = 0.01
+
+feed_forward            = True
+initial_connection      = full
+
+# Probabilidad de añadir/eliminar un nodo (mutacion)
+node_add_prob           = 0.2
+node_delete_prob        = 0.2
+
+# Parametros de entrada y salida de la red
+num_hidden              = 0
+num_inputs              = 5  #Recibe 5 entradas
+num_outputs             = 2  #Entrega 2 resultados
+
+# Opciones de respuesta del nodo
+response_init_mean      = 1.0
+response_init_stdev     = 0.0
+response_max_value      = 30.0
+response_min_value      = -30.0
+response_mutate_power   = 0.0
+response_mutate_rate    = 0.0
+response_replace_rate   = 0.0
+
+# Opciones de peso de conexion
+weight_init_mean        = 0.0
+weight_init_stdev       = 1.0
+weight_max_value        = 30
+weight_min_value        = -30
+weight_mutate_power     = 0.5
+weight_mutate_rate      = 0.8
+weight_replace_rate     = 0.1
+
+[DefaultSpeciesSet]
+compatibility_threshold = 3.0  #Todos aquellos que sus genomas resultado sean menores a este umbral seran considerados de la misma especie
+
+[DefaultStagnation]         # Estancamiento
+species_fitness_func = max  #Usada para calcular la aptitud (max-min-mean-median)
+max_stagnation       = 20   #Aquel que no ha mostrado mejoras en mas de 20 generacion serán eliminadas (default 15)
+species_elitism      = 2    # Protegidos del estancamiento para evitar la extincion a causa de no presentar mejoras
+
+[DefaultReproduction]
+elitism            = 3    # Se preservan los 3 más aptos y pasan tal cual al siguiente generacion
+survival_threshold = 0.2  # A 1/5 se le permite reproducirse para la next generation
